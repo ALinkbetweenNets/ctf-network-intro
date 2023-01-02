@@ -20,22 +20,110 @@
 		<div class="slides">
 			<section>
 				<h1>Network Intro</h1>
-				<h3>Eine Reise durch ein paar OSI Layer</h3>
+				<h3>Eine Reise durch die Schichten des Internets</h3>
+				<p>Unter <a href="https://slides.updownup.de/">slides.updownup.de</a> gibt es diese Slides.</p>
 			</section>
 			<section>
-				<h3>Layer idee</h3>
+				<h3>Layer Idee</h3>
+			</section>
+			<section>
+				<h3>Data Link Layer</h3>
+			</section>
+			<section>
+				<h3>Virtual private network (VPN)</h3>
+				Passt leider nicht so recht ins Model.
 			</section>
 			<section>
 				<h3>Wireshark</h3>
+				Tool zum aufzeichnen / ansehen von Netzwerkverkehr.
+			</section>
+			<section>
+				<h3>Wireguard</h3>
+				Eine moderne VPN-Implementierung, die auf den meisten Plattformen läuft.
 			</section>
 			<section>
 				<h3>Challenge 0: Kleiner Hai?</h3>
-				<p>Unter <a href="https://slides.updownup.de/">slides.updownup.de</a> gibts diese Slides.</p>
-				<p>Da gibt es dann unter <a href="https://slides.updownup.de/chal0.pcap">slides.updownup.de/chal0.pcap</a> ein
-					PCAP,
-					findet mit Wireshark die Flag!</p>
+				<p>Eine Wireguard config gibts unter: <a
+						href="https://slides.updownup.de/vpnconfig.ovpn">slides.updownup.de/vpnconfig.ovpn</a>
+				</p>
+				<p>Verbindet euch mit dem VPN und versucht auf <a
+						href="https://internal.slides.updownup.de/">internal.slides.updownup.de</a> zuzugreifen, beobachtet dabei
+					den Traffic mit Wireshark.
+				</p>
 
-				<countdown time="300" autostart="yes" />
+				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
+			<section>
+				<h3>Network Layer</h3>
+				<section>
+					<h4>IPv4</h4>
+				</section>
+				<section>
+					<h4>IPv6</h4>
+				</section>
+			</section>
+			<section>
+				<h3>Transport Layer</h3>
+				<section>
+					<h4>TCP</h4>
+				</section>
+				<section>
+					<h4>UDP</h4>
+				</section>
+				<section>
+					<h4>Socat</h4>
+				</section>
+				<section>
+					<h4>Pwntools</h4>
+				</section>
+				<section>
+					<h3>Challenge 1: Normaler Hai?</h3>
+					<p>Verbindet euch per TCP mit tcp.internal.slides.updownup.de auf Port 1337 und tut, was der Computer euch
+						sagt.</p>
+
+					<p class="fragment">Wir sehen uns in 20 min</p>
+				</section>
+			</section>
+			<section>
+				<h3>Application Layers</h3>
+				Technisch gesehen 3 Layer, aber naja.
+			</section>
+			<section>
+				<h3>HTTP(S)</h3>
+				<section>
+					<h4>Interlude HTML/JS/CSS</h4>
+				</section>
+				<section>
+					<h4>Actions</h4>
+				</section>
+				<section>
+					<h4>Header</h4>
+				</section>
+				<section>
+					<h4>Cookies</h4>
+				</section>
+			</section>
+			<section>
+				<h3>SSH</h3>
+			</section>
+			<section>
+				<h3>Challenge 2: Großer Hai?</h3>
+				<p>Verbindet euch über HTTP mit http.internal.slides.updownup.de auf Port 80 und tut, was der Computer euch
+					sagt.</p>
+
+				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
+
+
+			<section>
+				<h3>Zusammenfassung</h3>
+			</section>
+
+
+			<section>
+				<h3>OpenVPN</h3>
+				Der de-facto Standard für VPNs, funktioniert auf den meisten Plattformen OK und es gibt eigentlich immer eine
+				GUI.
 			</section>
 		</div>
 	</div>
@@ -44,10 +132,7 @@
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
-	<script src="plugin/countdown/countdown.js"></script>
 	<script>
-		import RevealCountDown from 'plugin/countdown/countdown.js'
-		Reveal.getPlugin('countdown')
 		// More info about initialization & config:
 		// - https://revealjs.com/initialization/
 		// - https://revealjs.com/config/
@@ -56,8 +141,7 @@
 			slideNumber: true,
 
 			// Learn about plugins: https://revealjs.com/plugins/
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealCountDown],
-			countdown: { defaultTime: 600, autostart: "no" }
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
 		});
 	</script>
 </body>
