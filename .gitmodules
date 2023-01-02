@@ -1,0 +1,3 @@
+[submodule "plugin/countdown"]
+	path = plugin/countdown
+	url = git@github.com:christer79/reveal_countdown.git
