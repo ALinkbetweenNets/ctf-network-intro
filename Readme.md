@@ -31,3 +31,4 @@ This is external, so these connections don't clutter Wireshark.
 ### Challenge 0
 
 Webserver, that outputs the flag via HTTP on Port 80.
+The flag is in flag.css.

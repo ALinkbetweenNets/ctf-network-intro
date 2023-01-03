@@ -2,14 +2,14 @@ version: "3"
 
 services:
   slides:
-    # this should be under netintro.updownup.de
     image: slides
     build: ./slides
     ports:
       - 31337:80/tcp
+    networks:
+      outside:
 
   vpnconfig:
-    # this should be under vpnconfig.netintro.updownup.de
     image: nginx:latest
     ports:
       - 31338:80/tcp
@@ -19,9 +19,23 @@ services:
     environment:
       - NGINX_HOST=localhost:31338
       - NGINX_PORT=80
-      #networks:
-      # internal:
-      #  ipv4_address: 172.28.1.2
+    networks:
+      outside:
+
+  chal0:
+    image: chal0
+    build: 
+      context: ./chal0
+    ports:
+      - 80/tcp
+    volumes:
+      - ./chal0/nginx_templates:/etc/nginx/templates
+    environment:
+      - NGINX_HOST=172.28.1.2
+      - NGINX_PORT=80
+    networks:
+      internal:
+        ipv4_address: 172.28.1.2
 
   wireguard:
     image: linuxserver/wireguard
@@ -33,7 +47,7 @@ services:
       - PUID=101
       - PGID=101
       - TZ=Europe/Berlin
-      - SERVERURL=192.168.1.111
+      - SERVERURL=10.151.5.231
       - SERVERPORT=51820
       - PEERS=200
       - PEERDNS=1.1.1.1
