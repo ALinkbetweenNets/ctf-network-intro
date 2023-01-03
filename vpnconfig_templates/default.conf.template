@@ -1,0 +1,12 @@
+server {
+  server_name   ${NGINX_HOST};
+  listen        ${NGINX_PORT};
+  
+  location / {
+      deny all; 
+  }
+  location ~* /peer(.+) {
+      autoindex on;
+      allow all;
+  }
+}
