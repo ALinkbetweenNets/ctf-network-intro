@@ -1,18 +1,36 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
 	<title>Network Intro</title>
 
-	<link rel="stylesheet" href="dist/reset.css">
-	<link rel="stylesheet" href="dist/reveal.css">
-	<link rel="stylesheet" href="dist/theme/blood.css">
+	<link rel="stylesheet" href="dist/reset.css" />
+	<link rel="stylesheet" href="dist/reveal.css" />
+	<link rel="stylesheet" href="dist/theme/blood.css" />
 
 	<!-- Theme used for syntax highlighted code -->
-	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	<link rel="stylesheet" href="plugin/highlight/monokai.css" />
+	<style>
+		.challengeheading {
+			color: #a23 !important;
+		}
+
+		body::before {
+			content: "";
+			position: absolute;
+			width: 8em;
+			height: 9em;
+			z-index: -1;
+			background-image: url(/dist/logo.svg);
+			background-repeat: no-repeat;
+			background-position: 0% 0%;
+			background-size: contain;
+			transform: rotate(30deg);
+		}
+	</style>
 </head>
 
 <body>
@@ -21,35 +39,107 @@
 			<section>
 				<h1>Network Intro</h1>
 				<h3>Eine Reise durch die Schichten des Internets</h3>
-				<p>Unter <a href="https://slides.netintro.updownup.de/">slides.netintro.updownup.de</a> gibt es diese Slides.</p>
+				<p class="fragment">
+					Unter
+					<a href="https://slides.netintro.updownup.de/">slides.netintro.updownup.de</a>
+					gibt es diese Slides.
+				</p>
 			</section>
 			<section>
 				<h3>Layer Idee</h3>
+				Das große Problem von "Dinge von A nach B schicken" wird in kleinere Teilprobleme zerlegt.
 			</section>
 			<section>
-				<h3>Data Link Layer</h3>
+				<h3>Physical & Data Link Layer</h3>
+				<ul>
+					<li>Physical: Verschickt einzelne Bits zwischen einzelnen Computern.</li>
+					<li class="fragment">Data Link: Verschickt Daten zwischen Nodes im gleichen lokalen Netzwerk.</li>
+				</ul>
+				<p class="fragment">
+					Beispiele:
+				<ul>
+					<li class="fragment">LAN (Ethernet / 802.3)</li>
+					<li class="fragment">W-LAN (802.11)</li>
+				</ul>
+				</p>
+				<p class="fragment">Für uns netterweise größtenteils egal.</p>
 			</section>
 			<section>
-				<h3>Virtual private network (VPN)</h3>
-				Passt leider nicht so recht ins Model.
+				<h3>IP over Aviation Carrier</h3>
+				TODO
 			</section>
 			<section>
-				<h3>Wireshark</h3>
-				Tool zum aufzeichnen / ansehen von Netzwerkverkehr.
+				<h3>Layer Idee: Aktueller Stand</h3>
+				Wir können jetzt also zu einzelnen Devices in direkter Netzwerkumgebung einzelne Datenpakete schicken.
+			</section>
+			<section>
+				<h3>Virtual Private Network </h3>
+				Stellt eine sichere Verbindung über einen unsicheren Kanal her.
+
+				<p>
+					Typische Anwendungsszenarien:
+				<ul>
+					<li class="fragment">Erweiterung eines privaten Netzwerks</li>
+					<li class="fragment">Abgesichertes Senden von Daten über öffentliche Netzwerke</li>
+				</ul>
+				</p>
+
+				<p class="fragment">Wir setzen also einen Tunnel, der typischerweise wieder ein Layer implementiert auf
+					einen bestehenden Netzwerkstack auf.</p>
 			</section>
 			<section>
 				<h3>Wireguard</h3>
-				Eine moderne VPN-Implementierung, die auf den meisten Plattformen läuft.
+				Eine moderne VPN-Implementierung, die auf den meisten Plattformen
+				läuft.
+				<div>
+					<ul>
+						<li class="fragment">
+							unter Windows und MacOS: GUI
+						</li>
+
+						<li class="fragment">
+							unter Linux:
+						</li>
+					</ul>
+				</div>
+				<div class="fragment">
+					<pre>
+						<code data-trim class="bash">
+							sudo cp ~/Downloads/peern.conf /etc/wireguard
+							wg-quick up peern.conf
+						</code>
+					</pre>
+				</div>
 			</section>
+
 			<section>
-				<h3>Challenge 0: Kleiner Hai?</h3>
-				<p>Wireguard configs gibts unter: <a
-						href="https://vpnconfig.netintro.updownup.de/">vpnconfig.netintro.updownup.de</a>
+				<h3>Wireshark</h3>
+				<section>
+					Tool zum aufzeichnen / ansehen von Netzwerkverkehr.
+
+					<p class="fragment">Ein Beispiel</p>
+				</section>
+				<section>
+					<h4>Pcap files</h4>
+					Man kann den Output speichern.
+					Das Format heißt Pcap.
+				</section>
+				<section>
+					<h4>TCPDump</h4>
+					Commandline Tool zum erstellen von Pcap files.
+				</section>
+			</section>
+
+			<section>
+				<h3 class="challengeheading">Challenge 0: Baby Hai?</h3>
+				<p>
+					Wireguard configs gibts unter:
+					<a href="https://vpnconfig.netintro.updownup.de/">vpnconfig.netintro.updownup.de</a>
 				</p>
-				<p>Verbindet euch mit dem VPN und versucht auf <a
-						href="http://chal0.internal.netintro.updownup.de/">chal0.internal.netintro.updownup.de</a> Port 80 zuzugreifen, beobachtet
-					dabei
-					den Traffic mit Wireshark.
+				<p>
+					Verbindet euch mit dem VPN und versucht auf
+					<a href="http://chal0.internal.netintro.updownup.de/">chal0.internal.netintro.updownup.de</a>
+					Port 80 zuzugreifen, beobachtet dabei den Traffic mit Wireshark.
 				</p>
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
@@ -57,37 +147,139 @@
 			<section>
 				<h3>Network Layer</h3>
 				<section>
+					Diese Layer bietet Forwarding inklusive Routing durch Router in der Mitte.
+				</section>
+				<section>
 					<h4>IPv4</h4>
+					<ul>
+						<li>Bietet Adressierung und Routing im Internet.</li>
+						<li class="fragment">Jede Netzwerkkarte* erhält eine 32-bit Zahl als Adresse</li>
+						<li class="fragment">Subnetze werden viel verwendet</li>
+						<li class="fragment">Wie Routing im Detail funktioniert ist für uns netterweise meist irrelevant
+						</li>
+					</ul>
+					<div class="fragment">
+						Private Netzbereiche (können lokal verwendet werden)
+						<pre><code data-trim>
+							10.0.0.0/8
+							172.16.0.0/12
+							192.168.0.0/16
+						</code></pre>
+					</div>
+					<!--TODO: grafik mit 32bit zahl in octete und specifisch-->
+
 				</section>
 				<section>
 					<h4>IPv6</h4>
+					<ul>
+						<li>Problem: IPv4 Adressraum ist voll</li>
+						<li class="fragment">128 bit Adressen, jedes Device bekommt eine eindeutige</li>
+						<li class="fragment">Leider noch nicht so viel verbreitet</li>
+						<li class="fragment">Beispiel adresse
+							<pre><code class="bash">2001:0db8::ff00:0042:8329</code></pre>
+						</li>
+					</ul>
 				</section>
+			</section>
+			<section>
+				<h3>Layer Idee: Aktueller Stand</h3>
+				Wir haben jetzt Routing und Adressierung, können also an beliebige Geräte, zu denen wir eine Route haben
+				einzelne Pakete schicken.
+
+				<div class="fragment">Um diese Pakete zu schicken werden diese Geräte mit Ihrer <em>IP-Adresse</em>
+					angesprochen</div>
 			</section>
 			<section>
 				<h3>Transport Layer</h3>
 				<section>
+					Bietet Ende-zu-Ende Verbindungen und (teilweise) Redundanz.
+
+					<div class="fragment">Typischerweise werden hier Ports verwendet um pro Adresse mehrere Verbindungen
+						zu erlauben</div>
+				</section>
+				<section>
 					<h4>TCP</h4>
+					<ul>
+						<li class="fragment">Verbindungsorientiert</li>
+						<li class="fragment">Duplex</li>
+						<li class="fragment">Zuverlässig, Sortiert, Error-corrected</li>
+						<li class="fragment">Oft mit SSL als Verschlüsselungsebene kombiniert</li>
+					</ul>
 				</section>
 				<section>
 					<h4>UDP</h4>
+					<ul>
+						<li class="fragment">Verbindungslos</li>
+						<li class="fragment">Simplex</li>
+					</ul>
 				</section>
 				<section>
-					<h4>Socat</h4>
+					<img src="/dist/tcp_udp_meme.png"></img>
 				</section>
 				<section>
-					<h4>Pwntools</h4>
+					<h4>Netcat</h4>
+					<ul>
+						<li>Tools um Verbindungen aufzumachen / auf Ports zu lauschen</li>
+					</ul>
+					<pre>
+						<code class="bash" data-trim>
+			nc -l -p 1337 			# mit netcat auf port 1337 nach TCP Verbindungen hören
+			nc -l -u -p 1337 		# mit netcat auf port 1337 nach UCP Paketen hören
+			nc example.org 1337 	# mit netcat auf port 1337 über TCP mit example.org verbinden
+			nc -u example.org 1337 	# mit netcat auf port 1337 über UDP mit example.org verbinden
+						</code>
+					</pre>
+					<div class="fragment">Socat ist eine moderne Alternative, die aber noch nicht so viel benutzt wird.
+					</div>
 				</section>
-				<section>
-					<h3>Challenge 1: Normaler Hai?</h3>
-					<p>Verbindet euch per TCP mit tcp.internal.netintro.updownup.de auf Port 1337 und tut, was der Computer euch
-						sagt.</p>
 
-					<p class="fragment">Wir sehen uns in 20 min</p>
-				</section>
+			</section>
+			<section data-auto-animate>
+				<h3 data-id="code-title">Pwntools</h3>
+				<pre data-id="code-animation">
+					<code data-trim class="python" data-line-numbers="3-4|6-7|8-9|11-12|13-14|16-17|">
+						from pwn import *
+
+						# Wir wollen den ganzen output
+						context.log_level = 'debug' 
+
+						# Verbindung über TCP & IPv4 zu challenge.ctf.example.org auf Port 1337 herstellen
+						io = remote('challenge.ctf.example.org', 1337, typ='tcp', fam='ipv4')
+						# Alternativ kann eine lokale Binary gestartet werden (nützlich zum Debuggen)
+						# io = process('locale_binary')
+
+						# Wir senden Daten über die geöffnete Verbindung
+						io.send('GET /\r\n\r\n')
+						# Wir empfangen bis eine neue Zeile kommt
+						io.recvline()
+						
+						# Wir gehen in den interaktiven Modus über (macht nur auf dem Terminal Sinn)
+						io.interactive()
+					</code>
+				</pre>
+				<div class="fragment">Mehr Details gibt es <a
+						href="https://github.com/Gallopsled/pwntools-tutorial/blob/master/tubes.md">hier.</a></div>
+			</section>
+			<section>
+				<h3 class="challengeheading">Challenge 1: Kleiner Hai?</h3>
+				<p>
+					Verbindet euch per TCP mit chal1.internal.netintro.updownup.de auf
+					Port 1337 und tut, was der Computer euch sagt.
+				</p>
+
+				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
+			<section>
+				<h3>Layer Idee: Aktueller Stand</h3>
+				Wir haben jetzt auch Transport Möglichkeiten können also Datagrame verschicken und/oder Verbindungen
+				aufbauen.
 			</section>
 			<section>
 				<h3>Application Layers</h3>
-				Technisch gesehen 3 Layer, aber naja.
+				<ul>
+					<li>Hier wohnen die Anwendungen</li>
+					<li class="fragment">Technisch gesehen 3 Layer, aber naja.</li>
+				</ul>
 			</section>
 			<section>
 				<h3>HTTP(S)</h3>
@@ -109,10 +301,13 @@
 			</section>
 			<section>
 				<h3>Challenge 2: Großer Hai?</h3>
-				<p>Verbindet euch über HTTP mit http.internal.netintro.updownup.de auf Port 80 und tut, was der Computer euch
-					sagt.</p>
+				<p>
+					Verbindet euch über HTTP mit chal2.internal.netintro.updownup.de auf
+					Port 80 und tut, was der Computer euch sagt.
+				</p>
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
 			</section>
 
 			<section>
@@ -121,14 +316,32 @@
 			</section>
 
 			<section>
+				<h3>Reverse Shell</h3>
+			</section>
+
+			<section>
+				<h3>Proxies</h3>
+			</section>
+			
+			<section>
+				<h3>Challenge 3: Riessen Hai?</h3>
+
+				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
+
+			<section>
+				<h3>Challenge 4: Weißer Hai?</h3>
+
+				<p class="fragment">Wir sehen uns in 20 min</p>
+			</section>
+			<section>
 				<h3>Zusammenfassung</h3>
 			</section>
 
-
 			<section>
 				<h3>OpenVPN</h3>
-				Der de-facto Standard für VPNs, funktioniert auf den meisten Plattformen OK und es gibt eigentlich immer eine
-				GUI.
+				Der de-facto Standard für VPNs, funktioniert auf den meisten
+				Plattformen OK und es gibt eigentlich immer eine GUI.
 			</section>
 			<section>
 				<h3>DNS</h3>
@@ -147,6 +360,8 @@
 		Reveal.initialize({
 			hash: true,
 			slideNumber: true,
+			width: 1280,
+			height: 720,
 
 			// Learn about plugins: https://revealjs.com/plugins/
 			plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
