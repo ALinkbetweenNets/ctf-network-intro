@@ -136,7 +136,10 @@
 					Wireguard configs gibts unter:
 					<a href="https://vpnconfig.netintro.updownup.de/">vpnconfig.netintro.updownup.de</a>
 				</p>
-				<p>
+
+				<p class="fragment">Bitte nur die eigene Config verwenden, sonst ist das System verwirrt.</p>
+
+				<p class="fragment">
 					Verbindet euch mit dem VPN und versucht auf
 					<a href="http://chal0.internal.netintro.updownup.de/">chal0.internal.netintro.updownup.de</a>
 					Port 80 zuzugreifen, beobachtet dabei den Traffic mit Wireshark.
@@ -217,19 +220,32 @@
 					<img src="/dist/tcp_udp_meme.png"></img>
 				</section>
 				<section>
-					<h4>Netcat</h4>
+					<h4>Netcat/Socat</h4>
 					<ul>
 						<li>Tools um Verbindungen aufzumachen / auf Ports zu lauschen</li>
 					</ul>
 					<pre>
 						<code class="bash" data-trim>
-			nc -l -p 1337 			# mit netcat auf port 1337 nach TCP Verbindungen hören
-			nc -l -u -p 1337 		# mit netcat auf port 1337 nach UCP Paketen hören
-			nc example.org 1337 	# mit netcat auf port 1337 über TCP mit example.org verbinden
-			nc -u example.org 1337 	# mit netcat auf port 1337 über UDP mit example.org verbinden
+			nc -l -p 1337           # auf port 1337 nach TCP Verbindungen hören
+			nc -l -u -p 1337        # auf port 1337 nach UCP Paketen hören
+			nc example.org 1337     # auf port 1337 über TCP mit example.org verbinden
+			nc -u example.org 1337 	# auf port 1337 über UDP mit example.org verbinden
 						</code>
 					</pre>
-					<div class="fragment">Socat ist eine moderne Alternative, die aber noch nicht so viel benutzt wird.
+
+					<div class="fragment">
+						<ul>
+							<li>Socat ist eine moderne Alternative</li>
+						</ul>
+						<pre>
+							<code class="bash" data-trim>
+			socat - tcp-l:1337           # auf port 1337 nach TCP Verbindungen hören
+			socat - udp-l:1337           # auf port 1337 nach UDP Paketen hören
+			socat - tcp:example.org:1337 # auf port 1337 über TCP mit example.org verbinden
+			socat - udp:example.org:1337 # auf port 1337 über UDP mit example.org verbinden
+
+							</code>
+						</pre>
 					</div>
 				</section>
 
@@ -284,23 +300,109 @@
 			<section>
 				<h3>HTTP(S)</h3>
 				<section>
-					<h4>Interlude HTML/JS/CSS</h4>
+					<ul>
+						<li>Hypertext Transfer Protocol</li>
+						<li class="fragment">HTTP/1.1 und HTTP/2 über TCP</li>
+						<li class="fragment">HTTP/3 über QUIC (ein Protokoll über UDP)</li>
+						<li class="fragment">Für so Webseiten, Standard Port 80</li>
+						<li class="fragment">HTTPS nutzt TLS Verschlüsselung, Standard Port 443</li>
+					</ul>
 				</section>
 				<section>
-					<h4>Actions</h4>
+					<h4>Interlude HTML/JS/CSS</h4>
+					<ul>
+						<li>HTML: Skelett für Webseiten</li>
+						<li>Javascript: Code für Webseiten </li>
+						<li>CSS: Macht Dinge schick</li>
+						<li>Liegen in einzelnen Dateien vor und werden (typischerweise) über HTTP geladen.
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h4>Example HTTP/1.1 Request</h4>
+					<pre>
+						<code data-trim data-line-numbers="1">
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Host: localhost:8888
+User-Agent: HTTPie/3.2.1
+</code>
+</pre>
+
+				</section>
+				<section>
+					<h4>Example HTTP/1.1 Response</h4>
+					<pre>
+						<code data-trim>
+							<script type="text/template">
+HTTP/1.0 200 OK
+Content-Length: 64
+Content-type: text/html
+Date: Wed, 04 Jan 2023 17:52:46 GMT
+Last-Modified: Wed, 04 Jan 2023 17:52:17 GMT
+Server: SimpleHTTP/0.6 Python/3.10.9
+
+<!DOCTYPE html>
+<html>
+        <body>
+                <h1>Test</h1>
+        </body>
+</html>
+	</script>
+						</code>
+					</pre>
+				</section>
+				<section>
+					<h4>Methods</h4>
+					<ul>
+						<li>Gibt es diverse, die wichtigesten zwei sind</li>
+						<li class="fragment">GET, ey Server, gib mal die Resource rüber</li>
+						<li class="fragment">POST, ey Server, mach mal was mit den Infos, die ich dir schicke</li>
+					</ul>
 				</section>
 				<section>
 					<h4>Header</h4>
+					<ul>
+						<li>Zusatzinfos zur Request Zeile</li>
+						<li class="fragment">Gibt es auch analog für Response</li>
+					</ul>
+					<pre>
+						<code data-trim data-line-numbers="2-6">
+GET / HTTP/1.1
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Host: localhost:8888
+User-Agent: HTTPie/3.2.1
+</code>
+</pre>
 				</section>
 				<section>
 					<h4>Cookies</h4>
+					<ul>
+						<li>Kleine Datenblöcke, die der Server dem User gibt</li>
+						<li class="fragment">Der User schickt diese Datenblöcke bei weiteren Requests als Header mit</li>
+					</ul>
 				</section>
 			</section>
 			<section>
 				<h3>SSH</h3>
+				<ul>
+					<li>Application Layer Protokoll um remote auf Rechner zuzugreifen</li>
+					<li class="fragment" >Gleichnamiges commandline Tool (auch für Windows) ist sehr praktisch</li>
+				</ul>
+				<div class="fragment">
+					<pre>
+						<code class="bash" data-trim>
+							ssh gina@server.example.org
+						</code>
+					</pre>
+				</div>
 			</section>
 			<section>
-				<h3>Challenge 2: Großer Hai?</h3>
+				<h3 class="challengeheading">Challenge 2: Großer Hai?</h3>
 				<p>
 					Verbindet euch über HTTP mit chal2.internal.netintro.updownup.de auf
 					Port 80 und tut, was der Computer euch sagt.
@@ -322,7 +424,7 @@
 			<section>
 				<h3>Proxies</h3>
 			</section>
-			
+
 			<section>
 				<h3>Challenge 3: Riessen Hai?</h3>
 

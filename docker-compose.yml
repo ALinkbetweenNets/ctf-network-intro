@@ -81,7 +81,6 @@ services:
       outside:
       internal:
         ipv4_address: 172.28.1.2
-        priority: 1000
 
 volumes:
   wireguard_configs:
