@@ -47,7 +47,11 @@
 			</section>
 			<section>
 				<h3>Layer Idee</h3>
-				Das große Problem von "Dinge von A nach B schicken" wird in kleinere Teilprobleme zerlegt.
+				<!--p>
+					Das große Problem von "Dinge von A nach B schicken" wird in kleinere Teilprobleme zerlegt.
+				</p-->
+
+				<img src="/dist/network.svg" height="500vh"></img>
 			</section>
 			<section>
 				<h3>Physical & Data Link Layer</h3>
@@ -64,69 +68,72 @@
 				</p>
 				<p class="fragment">Für uns netterweise größtenteils egal.</p>
 			</section>
-			<section>
-				<h3>IP over Aviation Carrier</h3>
+			<!--section>
+				<h3>IP over Avian Carriers (IPoAC)</h3>
 				TODO
-			</section>
+			</section-->
 			<section>
 				<h3>Layer Idee: Aktueller Stand</h3>
 				Wir können jetzt also zu einzelnen Devices in direkter Netzwerkumgebung einzelne Datenpakete schicken.
 			</section>
 			<section>
-				<h3>Virtual Private Network </h3>
-				Stellt eine sichere Verbindung über einen unsicheren Kanal her.
+				<section>
+					<h1 style="color:#a23">Interlude: Tools</h1>
+				</section>
+				<section>
+					<h3>Virtual Private Network </h3>
+					Stellt eine sichere Verbindung über einen unsicheren Kanal her.
 
-				<p>
-					Typische Anwendungsszenarien:
-				<ul>
-					<li class="fragment">Erweiterung eines privaten Netzwerks</li>
-					<li class="fragment">Abgesichertes Senden von Daten über öffentliche Netzwerke</li>
-				</ul>
-				</p>
-
-				<p class="fragment">Wir setzen also einen Tunnel, der typischerweise wieder ein Layer implementiert auf
-					einen bestehenden Netzwerkstack auf.</p>
-			</section>
-			<section>
-				<h3>Wireguard</h3>
-				Eine moderne VPN-Implementierung, die auf den meisten Plattformen
-				läuft.
-				<div>
+					<p>
+						Typische Anwendungsszenarien:
 					<ul>
-						<li class="fragment">
-							unter Windows und MacOS: GUI
-						</li>
-
-						<li class="fragment">
-							unter Linux:
-						</li>
+						<li class="fragment">Erweiterung eines privaten Netzwerks</li>
+						<li class="fragment">Abgesichertes Senden von Daten über öffentliche Netzwerke</li>
 					</ul>
-				</div>
-				<div class="fragment">
-					<pre>
+					</p>
+
+					<p class="fragment">Wir setzen also einen Tunnel, der typischerweise wieder ein Layer implementiert auf
+						einen bestehenden Netzwerkstack auf.</p>
+				</section>
+				<section>
+					<h3>Wireguard</h3>
+					Eine moderne VPN-Implementierung, die auf den meisten Plattformen
+					läuft.
+					<div>
+						<ul>
+							<li class="fragment">
+								unter Windows und MacOS: GUI
+							</li>
+
+							<li class="fragment">
+								unter Linux:
+							</li>
+						</ul>
+					</div>
+					<div class="fragment">
+						<pre>
 						<code data-trim class="bash">
 							sudo cp ~/Downloads/peern.conf /etc/wireguard
 							wg-quick up peern.conf
 						</code>
 					</pre>
-				</div>
-			</section>
+					</div>
+				</section>
 
-			<section>
-				<h3>Wireshark</h3>
 				<section>
+					<h3>Wireshark</h3>
 					Tool zum aufzeichnen / ansehen von Netzwerkverkehr.
 
 					<p class="fragment">Ein Beispiel</p>
-				</section>
-				<section>
-					<h4>Pcap files</h4>
-					Man kann den Output speichern.
-					Das Format heißt Pcap.
-				</section>
-				<section>
-					<h4>TCPDump</h4>
-					Commandline Tool zum erstellen von Pcap files.
+					<div class="fragment">
+						<h4>Pcap files</h4>
+						Man kann den Output speichern.
+						Das Format heißt Pcap.
+					</div>
+					<div class="fragment">
+						<h4>TCPDump</h4>
+						Commandline Tool zum erstellen von Pcap files.
+					</div>
 				</section>
 			</section>
 
@@ -391,7 +398,7 @@ User-Agent: HTTPie/3.2.1
 				<h3>SSH</h3>
 				<ul>
 					<li>Application Layer Protokoll um remote auf Rechner zuzugreifen</li>
-					<li class="fragment" >Gleichnamiges commandline Tool (auch für Windows) ist sehr praktisch</li>
+					<li class="fragment">Gleichnamiges commandline Tool (auch für Windows) ist sehr praktisch</li>
 				</ul>
 				<div class="fragment">
 					<pre>
@@ -426,7 +433,7 @@ User-Agent: HTTPie/3.2.1
 			</section>
 
 			<section>
-				<h3>Challenge 3: Riessen Hai?</h3>
+				<h3>Challenge 3: Riesen Hai?</h3>
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
 			</section>
@@ -438,6 +445,7 @@ User-Agent: HTTPie/3.2.1
 			</section>
 			<section>
 				<h3>Zusammenfassung</h3>
+				<img src="/dist/network.svg" height="500vh">
 			</section>
 
 			<section>
