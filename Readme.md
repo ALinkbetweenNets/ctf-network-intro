@@ -6,12 +6,16 @@ The gateway is configured as 172.28.0.1.
 We use fqdn as a placeholder for the domain name chosen, in our case `netintro.updownup.de`.
 It consists of :
 
-| Service Name  | Container Name | Tool      | IP               | DNS                 |
-| ------------- | -------------- | --------- | ---------------- | ------------------- |
-| Wireguard VPN | wireguard      | wireguard | 172.28.1.1       | -                   |
-| VPN config    | vpnconfig      | Nginx     | external (31338) | vpnconfig.fqdn      |
-| Slides        | slides         | revealjs  | external (31337) | slides.fqdn         |
-| Challenge 0   | chal0          | Nginx     | 172.28.1.2       | chal0.internal.fqdn |
+| Service Name       | Container Name | Tool      | IP                      | DNS                  |
+| ------------------ | -------------- | --------- | ----------------------- | -------------------- |
+| Wireguard VPN      | wireguard      | wireguard | 172.28.1.1              | -                    |
+| VPN config         | vpnconfig      | Nginx     | external (31338)        | vpnconfig.fqdn       |
+| Slides             | slides         | revealjs  | external (31337)        | slides.fqdn          |
+| Challenge 0        | chal0          | Nginx     | 172.28.1.2              | chal0.internal.fqdn  |
+| Challenge 1        | chal1          | Socat     | 172.28.1.4              | chal1.internal.fqdn  |
+| Challenge 2        | chal2          | Flask     | 172.28.1.5              | chal2.internal.fqdn  |
+| Challenge 2 SSH    | chal2b         | openssh   | 172.28.1.6 & 172.28.3.3 | chal2b.internal.fqdn |
+| Challenge 2 Answer | chal2c         | Flask     | 172.28.3.2              | -                    |
 
 ## Service explanations
 

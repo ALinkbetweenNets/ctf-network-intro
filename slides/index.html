@@ -257,6 +257,11 @@
 				</section>
 
 			</section>
+			<section>
+				<h3>SS/Netstat</h3>
+				Beides Tools um Ports, auf denen gelauscht wird anzuzeigen.
+				SS ist das neuere, aber manchmal hat man eben nur netstat.
+			</section>
 			<section data-auto-animate>
 				<h3 data-id="code-title">Pwntools</h3>
 				<pre data-id="code-animation">
@@ -408,6 +413,17 @@ User-Agent: HTTPie/3.2.1
 					</pre>
 				</div>
 			</section>
+
+			<section>
+				<h3>Tunneling</h3>
+				Wir wollen, dass unsere Packete an einem anderen Ort auftauchen.
+				<pre class="fragment"><code data-trim>
+ssh -L [LOCAL_IP:]LOCAL_PORT:DESTINATION:DESTINATION_PORT [USER@]SSH_SERVER # make it look like the ssh server is talking
+ssh -R [REMOTE:]REMOTE_PORT:DESTINATION:DESTINATION_PORT [USER@]SSH_SERVER # make it to the outside, that they are talking to the server
+				</code></pre>
+			</section>
+
+
 			<section>
 				<h3 class="challengeheading">Challenge 2: Großer Hai?</h3>
 				<p>
@@ -419,20 +435,7 @@ User-Agent: HTTPie/3.2.1
 			</section>
 			</section>
 
-			<section>
-				<h3>Tunneling</h3>
-				Passt leider nicht so recht ins Model.
-			</section>
-
-			<section>
-				<h3>Reverse Shell</h3>
-			</section>
-
-			<section>
-				<h3>Proxies</h3>
-			</section>
-
-			<section>
+			<!--section>
 				<h3>Challenge 3: Riesen Hai?</h3>
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
@@ -442,7 +445,8 @@ User-Agent: HTTPie/3.2.1
 				<h3>Challenge 4: Weißer Hai?</h3>
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
-			</section>
+			</section-->
+			
 			<section>
 				<h3>Zusammenfassung</h3>
 				<img src="/dist/network.svg" height="500vh">
