@@ -24,6 +24,7 @@ services:
 
   chal0:
     image: chal0
+    restart: unless-stopped
     build: 
       context: ./chal0
     ports:
@@ -40,6 +41,7 @@ services:
 
   chal1:
     image: chal1
+    restart: unless-stopped
     build: 
       context: ./chal1
     cap_add:
@@ -52,6 +54,51 @@ services:
     networks:
       internal:
         ipv4_address: 172.28.1.4
+
+  chal2:
+    image: chal2
+    build:
+      context: ./chal2/keyserver
+    ports:
+      - 80/tcp
+    volumes:
+      - ./chal2/user_key:/opt/static/user_key:ro
+    networks:
+      internal:
+        ipv4_address: 172.28.1.5
+    restart: unless-stopped
+
+  chal2b:
+    image: lscr.io/linuxserver/openssh-server:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - PUBLIC_KEY_FILE=/user_key.pub
+      - USER_NAME=admin
+    volumes:
+      - ./chal2/user_key.pub:/user_key.pub
+      - ./chal2/controlserver/network_daemon.sh:/custom-services.d/network_daemon.sh:ro
+    ports:
+      - 2222/tcp
+    restart: unless-stopped
+    networks:
+      non_reachable:
+        ipv4_address: 172.28.3.3
+      internal:
+        ipv4_address: 172.28.1.6
+
+
+  chal2c:
+    image: chal2c
+    build:
+      context: ./chal2/answerserver
+    ports:
+      - 80/tcp
+    networks:
+      non_reachable:
+        ipv4_address: 172.28.3.2
+    restart: unless-stopped
 
   wireguard:
     image: linuxserver/wireguard
@@ -68,7 +115,7 @@ services:
       - PEERS=200
       - PEERDNS=1.1.1.1
       - INTERNAL_SUBNET=172.28.2.0/24
-      - ALLOWEDIPS=172.28.0.0/16
+      - ALLOWEDIPS=172.28.1.0/24
     volumes:
       - wireguard_configs:/config
     ports:
@@ -95,4 +142,13 @@ networks:
       config:
         - subnet: 172.28.1.0/24
           gateway: 172.28.1.1
+  
+  non_reachable:
+    #internal: true
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.3.0/24
+          gateway: 172.28.3.1
   outside:

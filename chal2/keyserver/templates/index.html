@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Willkommen bei meinem SSH Key Server</h1>
+<p>
+    <form action="/login" method="POST">
+        <label for="user">Username:</label><br>
+        <input type="text" id="user" name="user"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+</p>
+{% endblock %}
