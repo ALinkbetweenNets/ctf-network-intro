@@ -25,7 +25,7 @@ services:
   chal0:
     image: chal0
     restart: unless-stopped
-    build: 
+    build:
       context: ./chal0
     ports:
       - 80/tcp
@@ -38,11 +38,10 @@ services:
       internal:
         ipv4_address: 172.28.1.3
 
-
   chal1:
     image: chal1
     restart: unless-stopped
-    build: 
+    build:
       context: ./chal1
     cap_add:
       - NET_ADMIN
@@ -88,7 +87,6 @@ services:
       internal:
         ipv4_address: 172.28.1.6
 
-
   chal2c:
     image: chal2c
     build:
@@ -110,7 +108,7 @@ services:
       - PUID=101
       - PGID=101
       - TZ=Europe/Berlin
-      - SERVERURL=10.151.5.231
+      - SERVERURL=202.61.251.70
       - SERVERPORT=51820
       - PEERS=200
       - PEERDNS=1.1.1.1
@@ -132,7 +130,6 @@ services:
 volumes:
   wireguard_configs:
 
-
 networks:
   internal:
     #internal: true
@@ -142,7 +139,7 @@ networks:
       config:
         - subnet: 172.28.1.0/24
           gateway: 172.28.1.1
-  
+
   non_reachable:
     #internal: true
     driver: bridge
