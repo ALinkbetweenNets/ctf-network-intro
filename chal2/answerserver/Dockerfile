@@ -2,14 +2,11 @@ FROM debian:stable-slim
 
 
 
-RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteractive apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install vim python-is-python3 socat iproute2 -y python3-pip
+RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteractive apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install vim python-is-python3 socat iproute2 -y python3-flask python3-gunicorn
 
 WORKDIR /opt
 
 COPY ./requirements.txt /opt/
-RUN python -m venv .venv
-RUN source .venv/bin/activate
-RUN pip install -r requirements.txt
 
 COPY ./server.py /opt/
 COPY ./templates /opt/templates
