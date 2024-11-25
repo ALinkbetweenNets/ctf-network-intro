@@ -141,10 +141,11 @@
 				<h3 class="challengeheading">Challenge 0: Baby Hai?</h3>
 				<p>
 					Wireguard configs gibts unter:
-					<a href="https://vpnconfig.netintro.alinkbetweennets.de/">vpnconfig.netintro.alinkbetweennets.de</a>
+					<a href="https://vpnconfig.netintro.alinkbetweennets.de/peerx">vpnconfig.netintro.alinkbetweennets.de/peerx</a>
+					Wobei x deine Zufallszahl ist
 				</p>
 
-				<p class="fragment">Bitte nur die eigene Config verwenden, sonst ist das System verwirrt.</p>
+				<p class="fragment">Bitte nur die Config für deine Zahl verwenden, sonst ist das System verwirrt</p>
 
 				<p class="fragment">
 					Verbindet euch mit dem VPN und versucht auf
@@ -269,7 +270,7 @@
 						from pwn import *
 
 						# Wir wollen den ganzen output
-						context.log_level = 'debug' 
+						context.log_level = 'debug'
 
 						# Verbindung über TCP & IPv4 zu challenge.ctf.example.org auf Port 1337 herstellen
 						io = remote('challenge.ctf.example.org', 1337, typ='tcp', fam='ipv4')
@@ -280,7 +281,7 @@
 						io.send('GET /\r\n\r\n')
 						# Wir empfangen bis eine neue Zeile kommt
 						io.recvline()
-						
+
 						# Wir gehen in den interaktiven Modus über (macht nur auf dem Terminal Sinn)
 						io.interactive()
 					</code>
@@ -446,7 +447,7 @@ ssh -R [REMOTE:]REMOTE_PORT:DESTINATION:DESTINATION_PORT [USER@]SSH_SERVER # mak
 
 				<p class="fragment">Wir sehen uns in 20 min</p>
 			</section-->
-			
+
 			<section>
 				<h3>Zusammenfassung</h3>
 				<img src="/dist/network.svg" height="500vh">
