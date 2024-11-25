@@ -4,7 +4,7 @@ FROM debian:stable-slim
 ARG CHAL2_FLAG=flag{grossssssssss3r_ha1_dim_dim}
 
 
-RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteractive apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install vim python-is-python3 socat iproute2 -y python3-pip
+RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteractive apt upgrade -y && DEBIAN_FRONTEND=noninteractive apt install vim python-is-python3 socat iproute2 -y python3-pip python3-venv
 
 WORKDIR /opt
 
