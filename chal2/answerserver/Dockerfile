@@ -7,6 +7,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt update -y && DEBIAN_FRONTEND=noninteracti
 WORKDIR /opt
 
 COPY ./requirements.txt /opt/
+RUN python -m venv .venv
+RUN source .venv/bin/activate
 RUN pip install -r requirements.txt
 
 COPY ./server.py /opt/
